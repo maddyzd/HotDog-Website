@@ -1,0 +1,1 @@
+This project is a simple interactive ordering page for a fictional café in Medford called Joe’s Hotdog Stand, developed for a CS 20 Web Programming assignment at Tufts University. The goal is to simulate an online ordering experience using core JavaScript, HTML, and arithmetic logic.
