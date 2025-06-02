@@ -1,0 +1,78 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title> Joes Hotdog Stand</title>
+    </head>
+    <body>
+        <script>
+            //constants to store price of each item 
+            var PHotdogs=4.65;
+            var PFries=3.75;
+            var PDrinks=1.89;
+
+            //users values for how many of each item they want
+            numDogs = parseFloat(prompt("How many hotdogs do you want?", '0'));
+            numFries = parseFloat(prompt("How many fries do you want", '0'));
+            numSoda = parseFloat(prompt("How many sodas do you want", '0'));
+
+            //function that takes a floating point number 
+            // and returns a string with that number rounded to two decimal places
+            function showMoney(floatnum) {
+                var roundnum = Math.round(floatnum * 100) / 100;
+                var roundstring = roundnum.toString();
+    
+                if (roundstring.indexOf('.') == -1) {
+                    roundstring += '.00';
+                } else if (roundstring.indexOf('.') == roundstring.length - 2) {
+                    roundstring += '0';
+                }       
+                return roundstring;
+            }
+
+            //total cost for one item 
+            THotdogs = numDogs * PHotdogs;
+            TFries = numFries * PFries;
+            TDrinks = numSoda * PDrinks;
+
+            //display order information: quantity of order and total cost for that item 
+            document.write("You odered " + numDogs);
+            if (numDogs === 1) {
+                document.write(" hot dog for a total of $" + showMoney(THotdogs) + "<br>");
+            } else {
+                document.write(" hot dogs for a total of $" + showMoney(THotdogs) + "<br>");
+            }
+
+            document.write("You odered " + numFries + " french fries for a total of $" + showMoney(TFries) + "<br>");
+
+            document.write("You odered " + numSoda);
+            if (numSoda === 1) {
+                document.write(" soda for a total of $" + showMoney(TDrinks) + "<br>");
+            } else {
+                document.write(" sodas for a total of $" + showMoney(TDrinks) + "<br>");
+            }
+
+            //calculate subtotal 
+            var subtotal = (numDogs * PHotdogs) + (numFries * PFries) + (numSoda * PDrinks);
+
+            //if subtotal is greater than 24 apply discount and display subtotal before discount, discount, and after discount
+            // if it is less than 24 display subtotal with no discount 
+            if (subtotal > 24) {
+                document.write("Subtotal before discount: $" + showMoney(subtotal) + "<br>");
+                discount = subtotal * .10;
+                subtotal = subtotal - discount;
+                document.write("Discount: $" + showMoney(discount) + "<br>");
+                document.write("Subtotal after discount: $" + showMoney(subtotal) + "<br>");
+            } else {
+                document.write("Subtotal: $" + showMoney(subtotal) + "<br>");
+            }
+            
+            //display tax amount and subtotal with tax
+            taxamount = subtotal * .0625;
+            document.write("Tax: $" + showMoney(taxamount) + "<br>");
+
+            //display final price 
+            Final = subtotal + taxamount;
+            document.write("Final total: $" + showMoney(Final));
+        </script>
+    </body>
+</html>

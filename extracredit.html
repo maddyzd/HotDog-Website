@@ -1,0 +1,71 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title> Joes Hotdog Stand Extra Credit</title>
+    </head>
+    <body>
+        <script>
+            //function that takes a floating point number 
+            // and returns a string with that number rounded to two decimal places
+            function showMoney(floatnum) {
+                var roundnum = Math.round(floatnum * 100) / 100;
+                var roundstring = roundnum.toString();
+    
+                if (roundstring.indexOf('.') == -1) {
+                    roundstring += '.00';
+                } else if (roundstring.indexOf('.') == roundstring.length - 2) {
+                    roundstring += '0';
+                }       
+                return roundstring;
+            }
+
+            //associative array for the item names and prices
+            var prices = {
+                "hotdogs": 4.65,
+                "fries": 3.75,
+                "drinks": 1.89
+            };
+
+            // associative array for the item names and quantities
+            var quantities = {
+                "numDogs": 0,
+                "numFries": 0,
+                "numSodas": 0
+            };
+            
+            // loop to get the quantities from the user
+            for(var items in prices) {
+                quantities[items] = parseFloat(prompt("How many " + items + " do you want?", '0'));
+            }
+           
+            //loop to do the subtotal calculation and print the quanitity and prices for individual items
+            var subtotal = 0;
+            for (var items in prices) {
+                var oneitem = prices[items] * quantities[items];
+                subtotal += oneitem;
+                document.write("You ordered " + quantities[items] + " " + items + " for a total of $" + showMoney(oneitem) + "<br>");
+            }
+
+            //if subtotal is greater than 24 apply discount and display subtotal before discount, discount, and after discount
+            // if it is less than 24 display subtotal with no discount 
+            if (subtotal > 24) {
+                document.write("Subtotal before discount: $" + showMoney(subtotal) + "<br>");
+                discount = subtotal * .10;
+                subtotal = subtotal - discount;
+                document.write("Discount: $" + showMoney(discount) + "<br>");
+                document.write("Subtotal after discount: $" + showMoney(subtotal) + "<br>");
+            } else {
+                document.write("Subtotal: $" + showMoney(subtotal) + "<br>");
+            }
+            
+            //display tax amount and subtotal with tax
+            taxamount = subtotal * .0625;
+            document.write("Tax: $" + showMoney(taxamount) + "<br>");
+
+            //display final price 
+            Final = subtotal + taxamount;
+            document.write("Final total: $" + showMoney(Final));
+           
+        </script>
+    </body>
+</html>
